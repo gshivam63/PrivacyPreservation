@@ -16,13 +16,11 @@
 
 <body>
 <form action="/getdatabaseservlet" method="post" name="myForm">
+    <%@ page import="java.util.*" %>
     <%
-        response.setHeader("Cache-Control","no-cache"); //Forces caches to obtain a new copy of the page from the origin server
-        response.setHeader("Cache-Control","no-store"); //Directs caches not to store the page under any circumstance
-        response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
-        response.setHeader("Pragma","no-cache");
         session=request.getSession(false);
         String admin_username =(String) session.getAttribute("USERNAME");
+        session.setAttribute("USERNAME", admin_username);
     %>
     <div class="container">
         <div  class="login-box">
@@ -30,7 +28,16 @@
                 <h2 style="margin:10px;">Hi <%=admin_username%>! <a style="color:lavender; float: right; font-size: medium; font-weight: bolder;" href="adminlogoutservlet">Logout</a></h2>
             </div>
             <br/>
-            <button type="submit">Get Databases List</button>
+            <%
+                // retrieve your list from the request, with casting
+                ArrayList<String> list = (ArrayList<String>) request.getAttribute("database_tablelist");
+                for(String str : list) {
+            %>
+            <span style="font-size: medium;" class="label label-default"><a href="#" name="table_name"><%=str%></a></span>
+            <br/><br/>
+            <%
+                }
+            %>
             <br/>
             <span style="color:red; font-size: medium; font-weight: bolder;"> ${param.err} </span>
         </div>
