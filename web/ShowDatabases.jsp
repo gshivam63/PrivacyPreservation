@@ -40,7 +40,7 @@
 
             %>
            <!-- <span style="font-size: medium;" class="label label-default"><a href="getcolumnservlet?database_name=<%=str%>" name="database_name"><%=str%></a></span>-->
-            <div onclick='templateDownload("<%=str%>")'><span style="font-size: medium;" class="label label-default"><%=str%></span></div>
+            <div onclick='templateDownload("<%=str%>")'><span style="font-size: medium; cursor: pointer;" class="label label-default"><%=str%></span></div>
             <br/><br/>
             <%
                 }
@@ -64,7 +64,7 @@
         //document.getElementsByClassName('database_list')[0].clear();
         $('.database_list').empty();
         //var string1 = "<a href='file:///C:/Users/shivam/IdeaProjects/PrivacyPreservation/web/templates/" + fileName + ".xlsx'> Download template:" + fileName + "</a>";
-        var string1="<a href='downloadServlet?param1='+fileName+> Download template:" + fileName + "</a>";
+        var string1 = "<a href='downloadservlet?param1=" + fileName + "'> Download template:" + fileName + "</a>";
         $('#template1').append(string1);
         $('#reload').show();
         var string2 = "<a  href='/getdatabaseservlet'>Show databases</a>";
