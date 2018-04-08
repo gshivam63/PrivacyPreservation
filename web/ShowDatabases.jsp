@@ -47,15 +47,18 @@
             %>
             <br/>
             </span>
-            <span style="color:red; font-size: medium; font-weight: bolder;"> ${param.err} </span>
             <span id="template1"></span>
-            <span id="template2"></span>
+            <span style="color:red; font-size: medium; font-weight: bolder;"> ${param.err} </span>
             <form method="post">
-                <div id="reload" hidden></div>
+                <div id="templatedownload_reload" hidden></div>
+            </form>
+            <form method="post">
+                <div id="templateupload_reload" hidden></div>
             </form>
         </div>
     </div>
 </form>
+
 </body>
 <script>
     $(document).ready(function(){
@@ -66,13 +69,16 @@
         //var string1 = "<a href='file:///C:/Users/shivam/IdeaProjects/PrivacyPreservation/web/templates/" + fileName + ".xlsx'> Download template:" + fileName + "</a>";
         var string1 = "<a href='downloadservlet?param1=" + fileName + "'> Download template:" + fileName + "</a>";
         $('#template1').append(string1);
-        $('#reload').show();
-        var string2 = "<a  href='/getdatabaseservlet'>Show databases</a>";
-        $('#reload').append(string2);
-    }
-    function showDatabases(){
-
-
+        $('#templatedownload_reload').show();
+        var download_string = "<a  href='/getdatabaseservlet'>Show databases</a>";
+        $('#templatedownload_reload').append(download_string);
+        $('#templateupload_reload').show();
+        var upload_string = "<form action=\"annonymizeservlet\" method=\"post\" enctype=\"multipart/form-data\">\n" +
+            "    <input type=\"file\" name=\"file_path\" id=\"file_path\" />\n" +
+            "    <br />\n" +
+            "    <input type=\"submit\" value=\"upload\" />\n" +
+            "</form>";
+        $('#templateupload_reload').append(upload_string);
     }
 </script>
 </html>
