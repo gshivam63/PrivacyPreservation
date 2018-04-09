@@ -39,7 +39,7 @@
                 for(String str : list) {
 
             %>
-           <!-- <span style="font-size: medium;" class="label label-default"><a href="getcolumnservlet?database_name=<%=str%>" name="database_name"><%=str%></a></span>-->
+
             <div onclick='templateDownload("<%=str%>")'><span style="font-size: medium; cursor: pointer;" class="label label-default"><%=str%></span></div>
             <br/><br/>
             <%
@@ -53,7 +53,7 @@
                 <div id="templatedownload_reload" hidden></div>
             </form>
             <form method="post">
-                <div id="templateupload_reload" hidden></div>
+                <div style="margin-top:10px; padding-top:10px;" id="templateupload_reload" hidden></div>
             </form>
         </div>
     </div>
@@ -61,8 +61,6 @@
 
 </body>
 <script>
-    $(document).ready(function(){
-    })
     function templateDownload(fileName){
         //document.getElementsByClassName('database_list')[0].clear();
         $('.database_list').empty();
@@ -73,10 +71,9 @@
         var download_string = "<a  href='/getdatabaseservlet'>Show databases</a>";
         $('#templatedownload_reload').append(download_string);
         $('#templateupload_reload').show();
-        var upload_string = "<form action=\"annonymizeservlet\" method=\"post\" enctype=\"multipart/form-data\">\n" +
-            "    <input type=\"file\" name=\"file_path\" id=\"file_path\" />\n" +
-            "    <br />\n" +
-            "    <input type=\"submit\" value=\"upload\" />\n" +
+        var upload_string = "<form action=\"annonymizeservlet\" method=\"post\">\n" +
+            " <input type=\"hidden\" name=\"myField_fileName\" id=\"myField_fileName\" value="+fileName+" />\n" +
+            "    <input style=\"cursor: pointer; color: mediumseagreen; padding-top:10px;\" type=\"submit\" value=\"Annonymize Your Data\" />\n" +
             "</form>";
         $('#templateupload_reload').append(upload_string);
     }

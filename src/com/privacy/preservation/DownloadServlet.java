@@ -16,7 +16,7 @@ public class DownloadServlet extends HttpServlet {
             HttpSession session = request.getSession(false);
             String admin_username =(String) session.getAttribute("USERNAME");
             session.setAttribute("USERNAME", admin_username);
-            String fileName=request.getParameter("param1")+".xlsx";
+            String fileName=request.getParameter("param1")+".xls";
             response.setContentType("text/html");
             PrintWriter out = response.getWriter();
             //String gurufile = "test.txt";

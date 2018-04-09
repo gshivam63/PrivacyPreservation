@@ -7,6 +7,20 @@
         <element id="directory" name="classes">
           <element id="module-output" name="PrivacyPreservation" />
         </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$USER_HOME$/Downloads/REQUIRED/commons-codec-1.10.jar" />
+          <element id="file-copy" path="$USER_HOME$/Downloads/REQUIRED/commons-fileupload-1.3.3.jar" />
+          <element id="file-copy" path="$USER_HOME$/Downloads/REQUIRED/commons-io-2.6.jar" />
+          <element id="file-copy" path="$USER_HOME$/Downloads/REQUIRED/dom4j-1.6.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/Downloads/REQUIRED/jdbc-api-1.4.jar" />
+          <element id="file-copy" path="$USER_HOME$/Downloads/REQUIRED/mysql-connector-java.jar" />
+          <element id="file-copy" path="$USER_HOME$/Downloads/REQUIRED/poi-3.17.jar" />
+          <element id="file-copy" path="$USER_HOME$/Downloads/REQUIRED/poi-ooxml-3.17.jar" />
+          <element id="file-copy" path="$USER_HOME$/Downloads/REQUIRED/poi-ooxml-schemas-3.17.jar" />
+          <element id="file-copy" path="$USER_HOME$/Downloads/REQUIRED/stax-api-1.0.1.jar" />
+          <element id="file-copy" path="$USER_HOME$/Downloads/REQUIRED/xmlbeans-2.6.0.jar" />
+          <element id="file-copy" path="$USER_HOME$/Downloads/REQUIRED/commons-collections4-4.1.jar" />
+        </element>
       </element>
     </root>
   </artifact>
