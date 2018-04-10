@@ -46,13 +46,12 @@ public class AnnonymizeServlet extends HttpServlet {
                             column_values.add(currentCell.getNumericCellValue());
                         }
                     }
-                    request.setAttribute("column_arrayList",column_values);
-                    request.setAttribute("fileName",fileName);
-                    RequestDispatcher disp = null;
-                    disp = this.getServletContext().getRequestDispatcher("/AnnonymizeColumns.jsp");
-                    disp.forward(request, response);
-
                 }
+                request.setAttribute("column_arrayList",column_values);
+                request.setAttribute("fileName",fileName);
+                RequestDispatcher disp = null;
+                disp = this.getServletContext().getRequestDispatcher("/AnnonymizeColumns.jsp");
+                disp.forward(request, response);
             }catch (IOException e) {
                 e.printStackTrace();
             }

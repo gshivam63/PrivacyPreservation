@@ -30,10 +30,12 @@
                 String fileName=(String)request.getAttribute("fileName");
                 // retrieve your list from the request, with casting
                 ArrayList<String> column_list = (ArrayList<String>) request.getAttribute("column_arrayList");
+                session.setAttribute("column_arrayList",column_list);
                 for(String str : column_list) {
             %>
+        <form action="uploadservlet" method="post" enctype="multipart/form-data" onsubmit='return review_annoymization("<%=fileName%>")'>
             <div><span style="font-size: medium; cursor: pointer;" class="label label-default"><%=str%></span></div>
-            <select name="<=%str%>" id="<=%str%>">
+            <select name=<%=str%> id=<%=str%> >
                 <option>Encryption</option>
                 <option>Masking</option>
                 <option>Generalisation</option>
@@ -46,11 +48,11 @@
             %>
             <br/>
         </span>
-        <form action="uploadservlet" method="post" enctype="multipart/form-data">
+
                 <input type="file" name="file_path" id="file_path" />
                 <br />
                 <input type="submit" value="upload" />
-            </form>
+        </form>
         <input onclick='review_annoymization("<%=fileName%>")' style="cursor: pointer; color: mediumseagreen; padding-top:10px;" type="submit" value="Review Annonymize" />
         <br/>
         <input onclick='upload_annoymization("<%=fileName%>")' style="cursor: pointer; color: mediumseagreen; padding-top:10px;" type="submit" value="Upload Annonymized Data" />
@@ -61,6 +63,19 @@
 <script>
     function review_annoymization(fileName){
         alert("review Annonymization "+fileName);
+        <%
+            int i=0;
+            for(String str : column_list) {
+                i++;
+        %>
+        alert(<%=i%>);
+        var col_name="<%=str%>";
+        var col_option=document.getElementById("<%=str%>");
+        alert(col_name + " " + col_option.value);
+        <%
+                System.out.print(i+" ");
+            }
+        %>
     }
     function upload_annoymization(fileName){
         alert("upload Annonymization "+fileName);
