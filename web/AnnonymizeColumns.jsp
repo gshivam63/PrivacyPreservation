@@ -27,20 +27,19 @@
         <span class="column_list">
             <%
                 //retrieve fileName
-                String fileName=(String)request.getAttribute("fileName");
+                String fileName=(String)session.getAttribute("fileName");
+                session.setAttribute("fileName", fileName);
                 // retrieve your list from the request, with casting
                 ArrayList<String> column_list = (ArrayList<String>) request.getAttribute("column_arrayList");
                 session.setAttribute("column_arrayList",column_list);
                 for(String str : column_list) {
             %>
-        <form action="uploadservlet" method="post" enctype="multipart/form-data" onsubmit='return review_annoymization("<%=fileName%>")'>
+         <form action="uploadservlet" method="post" enctype="multipart/form-data">
             <div><span style="font-size: medium; cursor: pointer;" class="label label-default"><%=str%></span></div>
             <select name=<%=str%> id=<%=str%> >
-                <option>Encryption</option>
-                <option>Masking</option>
-                <option>Generalisation</option>
-                <option>Deletion</option>
-                <option>No Operation</option>
+                <option value="No_Encryption">No_Encryption</option>
+                <option value="Generalisation">Generalisation</option>
+                <option value="Random_Anonymization">Random_Anonymization</option>
             </select>
             <br/>
             <%
@@ -53,32 +52,24 @@
                 <br />
                 <input type="submit" value="upload" />
         </form>
-        <input onclick='review_annoymization("<%=fileName%>")' style="cursor: pointer; color: mediumseagreen; padding-top:10px;" type="submit" value="Review Annonymize" />
-        <br/>
-        <input onclick='upload_annoymization("<%=fileName%>")' style="cursor: pointer; color: mediumseagreen; padding-top:10px;" type="submit" value="Upload Annonymized Data" />
-        <br/>
+        <%
+            String upload_message=(String)session.getAttribute("upload_message");
+            upload_message= (String) request.getAttribute("upload_message");
+            if(upload_message!=null)
+                session.setAttribute("upload_message",upload_message);
+            if(upload_message==null)
+                upload_message=(String)session.getAttribute("upload_message");
+            if(upload_message!=null){
+        %>
+        <span style="color:green; font-size: medium; font-weight: bolder;"> <%=upload_message%> </span>
+        <br/><br/>
+        <form action="Review.jsp" method="post">
+            <input style="cursor: pointer; color: mediumseagreen; padding-top:10px;" type="submit" value="Proceed" />
+        </form>
+        <%
+            }
+        %>
     </div>
 </div>
 </body>
-<script>
-    function review_annoymization(fileName){
-        alert("review Annonymization "+fileName);
-        <%
-            int i=0;
-            for(String str : column_list) {
-                i++;
-        %>
-        alert(<%=i%>);
-        var col_name="<%=str%>";
-        var col_option=document.getElementById("<%=str%>");
-        alert(col_name + " " + col_option.value);
-        <%
-                System.out.print(i+" ");
-            }
-        %>
-    }
-    function upload_annoymization(fileName){
-        alert("upload Annonymization "+fileName);
-    }
-</script>
 </html>

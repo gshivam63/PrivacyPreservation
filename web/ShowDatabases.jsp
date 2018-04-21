@@ -25,6 +25,8 @@
         session=request.getSession(false);
         String admin_username =(String) session.getAttribute("USERNAME");
         session.setAttribute("USERNAME", admin_username);
+        String upload_message= (String) session.getAttribute("upload_message");
+        session.setAttribute("upload_message",upload_message);
     %>
     <div class="container">
         <div  class="login-box">
@@ -37,12 +39,13 @@
                 // retrieve your list from the request, with casting
                 ArrayList<String> list = (ArrayList<String>) request.getAttribute("database_arrayList");
                 for(String str : list) {
-
+                    if(str.equals("patient_data") || str.equals("transactional_data")){
             %>
 
             <div onclick='templateDownload("<%=str%>")'><span style="font-size: medium; cursor: pointer;" class="label label-default"><%=str%></span></div>
             <br/><br/>
             <%
+                    }
                 }
             %>
             <br/>
